@@ -1,13 +1,36 @@
 [
   {
     "user": "MVesuviusC",
-    "total": 230,
-    "commits": 10,
-    "opened_prs": 5,
-    "merged_prs": 5,
+    "total": 275,
+    "commits": 12,
+    "commit_points": 60,
+    "opened_prs": 6,
+    "opened_pr_points": 60,
+    "merged_prs": 6,
+    "merged_pr_points": 120,
+    "scoped_bonus_count": 5,
+    "scoped_bonus_points": 25,
     "reviews": 0,
     "review_points": 0,
+    "first_merge_bonus_count": 1,
+    "first_merge_bonus_points": 10,
     "reasons": [
+      {
+        "reason": "Commit points",
+        "points": 10
+      },
+      {
+        "reason": "Opened PR",
+        "points": 10
+      },
+      {
+        "reason": "Scoped PR bonus",
+        "points": 5
+      },
+      {
+        "reason": "Merged PR",
+        "points": 20
+      },
       {
         "reason": "Commit points",
         "points": 5
@@ -94,10 +117,17 @@
     "user": "YogiBud",
     "total": 8,
     "commits": 0,
+    "commit_points": 0,
     "opened_prs": 0,
+    "opened_pr_points": 0,
     "merged_prs": 0,
+    "merged_pr_points": 0,
+    "scoped_bonus_count": 0,
+    "scoped_bonus_points": 0,
     "reviews": 1,
     "review_points": 8,
+    "first_merge_bonus_count": 0,
+    "first_merge_bonus_points": 0,
     "reasons": [
       {
         "reason": "Submitted review",
