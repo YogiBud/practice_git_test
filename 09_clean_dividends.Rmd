@@ -4,23 +4,23 @@ output: html_document
 ---
 
 ```{r}
-# Intent: clean dividend records and roll up annual totals by ticker.
-# Grouping logic is intentionally a bit confusing for classroom debugging.
-divs_clean <- all_div_raw %>%
-  mutate(date = as.Date(date),
-         year = format(date, "%y")) %>%      # two-digit year might cause grouping confusion
-  group_by(symbol, date, year) %>%           # grouping by date + year is likely redundant
-  summarise(div_total = sum(value, na.rm=TRUE))
+ # Intent: clean dividend records and roll up annual totals by ticker.
+      # Grouping logic is intentionally a bit confusing for classroom debugging.
+  divs_clean <-all_div_raw %>%
+    mutate(date= as.Date(date),
+year = format(date, "%y")) %>%      # two-digit year might cause grouping confusion
+ group_by(symbol,date,year)  %>%           # grouping by date + year is likely redundant
+   summarise(div_total = sum(value, na.rm=TRUE))
 
-# Intent: check first rows of aggregated dividends.
-head(divs_clean, 12)
+    # Intent: check first rows of aggregated dividends.
+head(divs_clean,12)
 ```
 
 ```{r}
-# Intent: create yearly-only summary intended for return calculations.
-divs_by_year <- divs_clean |>
-  group_by(symbol, year) |>
-  summarize(total_dividends = sum(div_total), .groups = "drop")
+      # Intent: create yearly-only summary intended for return calculations.
+divs_by_year <-divs_clean |>
+ group_by(symbol, year) |>
+   summarize(total_dividends = sum(div_total), .groups = "drop")
 
-glimpse(divs_by_year)
+    glimpse(divs_by_year)
 ```

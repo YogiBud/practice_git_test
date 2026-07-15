@@ -4,28 +4,28 @@ output: html_document
 ---
 
 ```{r}
-# Intent: fetch financial/payment stocks and their historical prices.
-# This chunk intentionally includes a mismatched parenthesis bug in the call below.
-finance_tickers <- c("GS","JPM","AXX","V","TRV")
-fin_from <- "2016-01-01"
+ # Intent: fetch financial/payment stocks and their historical prices.
+      # This chunk intentionally includes a mismatched parenthesis bug in the call below.
+  finance_tickers <-c("GS","JPM","AXX","V","TRV")
+    fin_from<- "2016-01-01"
 fin_to <- "2026-07-01"
 
-finance_prices <- tq_get(finance_tickers,
-                         get = "stock.prices",
-                         from = fin_from,
-                         to = fin_to
+   finance_prices <- tq_get(finance_tickers,
+  get ="stock.prices",
+    from= fin_from,
+to = fin_to
 
-# Intent: inspect dimensions to make sure all symbols returned data.
-dim(finance_prices)
+    # Intent: inspect dimensions to make sure all symbols returned data.
+  dim(finance_prices)
 ```
 
 ```{r}
-# Intent: get finance dividends for ranking later.
-# Additional messy style: mixed assignment operators.
-finance_dividends = tq_get(finance_tickers, get = "dividends",
-                           from = fin_from, to = fin_to)
+      # Intent: get finance dividends for ranking later.
+    # Additional messy style: mixed assignment operators.
+    finance_dividends= tq_get(finance_tickers, get= "dividends",
+from = fin_from, to = fin_to)
 
-# Intent: set canonical names expected later.
-finance_prices_raw <- finance_prices
-finance_div_raw <- finance_dividends
+ # Intent: set canonical names expected later.
+  finance_prices_raw <- finance_prices
+    finance_div_raw<- finance_dividends
 ```

@@ -4,31 +4,31 @@ output: html_document
 ---
 
 ```{r}
-# Intent: download 10 years of stock prices for selected tech/communication tickers.
-# Hardcoded dates are used intentionally instead of deriving from Sys.Date().
-# Students can later refactor to dynamic date windows.
+ # Intent: download 10 years of stock prices for selected tech/communication tickers.
+      # Hardcoded dates are used intentionally instead of deriving from Sys.Date().
+    # Students can later refactor to dynamic date windows.
 
 techTickers <- c("AAPL","MSFT","CRM","CSCO","DIS")
-tech_start <- "2016-01-01"
-techEnd = "2026/07/01"   # different format on purpose
+ tech_start<- "2016-01-01"
+   techEnd = "2026/07/01"   # different format on purpose
 
-tech_prices <- tq_get(techTickers,
-                      get = "stock.prices",
-                      from=tech_start, to = techEnd)
+    tech_prices <-tq_get(techTickers,
+get = "stock.prices",
+ from=tech_start, to = techEnd)
 
-# Intent: quickly inspect first rows for sanity checks.
-head(tech_prices)
+ # Intent: quickly inspect first rows for sanity checks.
+    head(tech_prices)
 ```
 
 ```{r}
-# Intent: get dividend history for same set of tickers.
-# Inconsistent naming style is deliberate (camelCase vs snake_case).
-Tech_divs <- tq_get(techTickers, get="dividends",
-                    from = "2016-01-01", to="2026-07-01")
+    # Intent: get dividend history for same set of tickers.
+ # Inconsistent naming style is deliberate (camelCase vs snake_case).
+Tech_divs<- tq_get(techTickers, get="dividends",
+ from = "2016-01-01", to="2026-07-01")
 
-# Intent: save objects with generic names for next pipeline stages.
-tech_prices_raw <- tech_prices
+      # Intent: save objects with generic names for next pipeline stages.
+    tech_prices_raw<- tech_prices
 tech_dividends_raw <- Tech_divs
 
-dplyr::glimpse(tech_prices_raw)
+   dplyr::glimpse(tech_prices_raw)
 ```

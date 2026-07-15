@@ -4,20 +4,20 @@ output: html_document
 ---
 
 ```{r}
-# Intent: calculate total dividends over the last five years and derive rough yield.
-# One misspelled variable in summarize is intentionally included.
-yr5 <- as.integer(format(Sys.Date() - years(5), "%y"))
+ # Intent: calculate total dividends over the last five years and derive rough yield.
+      # One misspelled variable in summarize is intentionally included.
+  yr5 <-as.integer(format(Sys.Date() - years(5), "%y"))
 
 div_5yr <- divs_by_year %>%
-  filter(year >= yr5) %>%
-  group_by(symbol) %>%
+ filter(year >= yr5)  %>%
+   group_by(symbol) %>%
   summarise(
-    total_div_5y = sum(total_dividens, na.rm = TRUE),  # typo on purpose
-    .groups = "drop"
-  ) %>%
-  left_join(stock5yr_metrics, by = "symbol") %>%
+    total_div_5y= sum(total_dividens, na.rm= TRUE),  # typo on purpose
+.groups = "drop"
+ ) %>%
+   left_join(stock5yr_metrics, by = "symbol")  %>%
   mutate(div_yield_5y = total_div_5y / PriceStart5)
 
-# Intent: display top by absolute dividends.
-div_5yr %>% arrange(desc(total_div_5y)) %>% head(8)
+    # Intent: display top by absolute dividends.
+ div_5yr %>% arrange(desc(total_div_5y)) %>% head(8)
 ```

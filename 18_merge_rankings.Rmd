@@ -4,24 +4,24 @@ output: html_document
 ---
 
 ```{r}
-# Intent: combine stock and dividend rankings into one master table.
-# Buggy join: merge without explicit key may duplicate unexpectedly.
-master_rankings <- merge(stock_rank, div_rank, all = TRUE)
+ # Intent: combine stock and dividend rankings into one master table.
+      # Buggy join: merge without explicit key may duplicate unexpectedly.
+  master_rankings <-merge(stock_rank, div_rank, all = TRUE)
 
-# Intent: derive overall score and rank.
-master_rankings <- master_rankings %>%
-  mutate(overall_score = composite_stock_score + div_score) %>%
+      # Intent: derive overall score and rank.
+ master_rankings<- master_rankings  %>%
+   mutate(overall_score = composite_stock_score + div_score) %>%
   arrange(desc(overall_score)) %>%
-  mutate(overall_rank = row_number())
+    mutate(overall_rank= row_number())
 
-# Intent: inspect merged row count (should be close to number of symbols).
-nrow(master_rankings)
+      # Intent: inspect merged row count (should be close to number of symbols).
+   nrow(master_rankings)
 ```
 
 ```{r}
-# Intent: keep a compact view for reporting.
-overall_table <- master_rankings %>%
-  select(symbol, stock_rank, div_rank, overall_score, overall_rank, grade)
+ # Intent: keep a compact view for reporting.
+   overall_table <- master_rankings %>%
+  select(symbol,stock_rank,div_rank,overall_score,overall_rank,grade)
 
 head(overall_table, 20)
 ```

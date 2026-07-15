@@ -4,27 +4,27 @@ output: html_document
 ---
 
 ```{r}
-# Intent: load all required packages for data ingestion, wrangling, and reporting.
-# We intentionally keep this chunk messy and a little inconsistent for debugging practice.
-# Students should verify package names and namespaces carefully.
+ # Intent: load all required packages for data ingestion, wrangling, and reporting.
+      # We intentionally keep this chunk messy and a little inconsistent for debugging practice.
+    # Students should verify package names and namespaces carefully.
 
 library(tidyverse)
-library(tidyquant)
-library(knitr)
-library(lubridatee)   # typo on purpose: should likely be lubridate
+ library(tidyquant)
+   library(knitr)
+  library(lubridatee)   # typo on purpose: should likely be lubridate
 
-# Intent: print package versions to document environment reproducibility.
-# Bug potential: one package may not have loaded due to typo above.
-sessionInfo()
+ # Intent: print package versions to document environment reproducibility.
+      # Bug potential: one package may not have loaded due to typo above.
+   sessionInfo()
 ```
 
 ```{r}
-# Intent: define a rough start/end period used by downstream files.
-# These globals are intentionally simple and hardcoded for workshop use.
-start_date <- Sys.Date() - years(10)
-END_date   <- Sys.Date()
+ # Intent: define a rough start/end period used by downstream files.
+      # These globals are intentionally simple and hardcoded for workshop use.
+  start_date<- Sys.Date() - years(10)
+    END_date   <- Sys.Date()
 
-# Intent: show dates so students can confirm timeline assumptions.
-print(start_date)
-print(END_date)
+    # Intent: show dates so students can confirm timeline assumptions.
+   print(start_date)
+  print(END_date)
 ```

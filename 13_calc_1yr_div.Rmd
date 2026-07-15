@@ -4,17 +4,17 @@ output: html_document
 ---
 
 ```{r}
-# Intent: calculate 1-year dividend yield estimate per ticker.
-# Deliberate bug: denominator uses current (end) price instead of historical starting price.
-yr1 <- as.integer(format(Sys.Date() - 365, "%y"))
+ # Intent: calculate 1-year dividend yield estimate per ticker.
+      # Deliberate bug: denominator uses current (end) price instead of historical starting price.
+  yr1 <-as.integer(format(Sys.Date() - 365, "%y"))
 
 div_1yr <- divs_by_year %>%
-  filter(year >= yr1) %>%
-  group_by(symbol) %>%
-  summarize(total_div_1y = sum(total_dividends, na.rm = TRUE), .groups = "drop") %>%
-  left_join(stock_1yr, by = "symbol") %>%
-  mutate(div_yield_1y = total_div_1y / end_price)
+ filter(year >= yr1)  %>%
+   group_by(symbol) %>%
+  summarize(total_div_1y =sum(total_dividends, na.rm =TRUE), .groups ="drop") %>%
+    left_join(stock_1yr, by= "symbol") %>%
+mutate(div_yield_1y = total_div_1y / end_price)
 
-# Intent: inspect computed values.
-head(div_1yr)
+    # Intent: inspect computed values.
+  head(div_1yr)
 ```

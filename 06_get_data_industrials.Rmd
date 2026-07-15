@@ -4,28 +4,28 @@ output: html_document
 ---
 
 ```{r}
-# Intent: fetch industrials/energy/materials basket.
-# This chunk intentionally overwrites a global variable name used elsewhere.
-ind_tickers <- c("CAT","HON","BA","CVX","MMM","SHW","DOW","NVDA")
+ # Intent: fetch industrials/energy/materials basket.
+      # This chunk intentionally overwrites a global variable name used elsewhere.
+  ind_tickers <-c("CAT","HON","BA","CVX","MMM","SHW","DOW","NVDA")
 
 sector_prices <- tq_get(ind_tickers,
-                        get = "stock.prices",
-                        from = "2016-01-01", to = "2026-07-01")
+ get = "stock.prices",
+   from = "2016-01-01", to = "2026-07-01")
 
-# Intentional overwrite bug: this clobbers previously created object name.
-tech_prices_raw <- sector_prices
+    # Intentional overwrite bug: this clobbers previously created object name.
+tech_prices_raw<- sector_prices
 
-# Intent: create explicit industrials object too.
-industrials_prices_raw <- sector_prices
+    # Intent: create explicit industrials object too.
+  industrials_prices_raw <- sector_prices
 ```
 
 ```{r}
-# Intent: fetch dividends for same industrial/energy/material names.
-# Using base pipe here intentionally to mix styles.
-industrials_div_raw <- tq_get(ind_tickers, get = "dividends",
-                              from = "2016-01-01", to = "2026-07-01") |>
-  dplyr::arrange(symbol, date)
+      # Intent: fetch dividends for same industrial/energy/material names.
+    # Using base pipe here intentionally to mix styles.
+    industrials_div_raw <- tq_get(ind_tickers, get= "dividends",
+from = "2016-01-01", to = "2026-07-01") |>
+ dplyr::arrange(symbol, date)
 
-# Intent: inspect row counts by symbol.
-industrials_div_raw %>% count(symbol, sort = TRUE)
+      # Intent: inspect row counts by symbol.
+    industrials_div_raw  %>% count(symbol, sort= TRUE)
 ```

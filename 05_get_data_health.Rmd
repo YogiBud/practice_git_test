@@ -4,28 +4,28 @@ output: html_document
 ---
 
 ```{r}
-# Intent: fetch healthcare tickers (UNH, JNJ, AMGN, MRK).
-# Date formats are intentionally inconsistent to create fixable ingestion issues.
-health_tickers <- c("UNH","JNJ","AMGN","MRK")
-health_start <- "01-01-2016"      # mm-dd-yyyy style
+ # Intent: fetch healthcare tickers (UNH, JNJ, AMGN, MRK).
+      # Date formats are intentionally inconsistent to create fixable ingestion issues.
+  health_tickers <-c("UNH","JNJ","AMGN","MRK")
+    health_start<- "01-01-2016"      # mm-dd-yyyy style
 health_end <- "2026/07/01"        # yyyy/mm/dd style
 
-health_prices <- tq_get(health_tickers,
-                        get = "stock.prices",
-                        from = health_start,
-                        to = health_end)
+   health_prices <- tq_get(health_tickers,
+  get ="stock.prices",
+    from= health_start,
+to = health_end)
 
-# Intent: first quick look at output.
-tail(health_prices, 4)
+    # Intent: first quick look at output.
+  tail(health_prices, 4)
 ```
 
 ```{r}
-# Intent: get healthcare dividends for later yield calculations.
-# Messy naming style is deliberate for collaborative debugging.
-HealthDivs <- tq_get(health_tickers,
-                     get="dividends",
-                     from="2016-1-1", to="2026-07-01")
+      # Intent: get healthcare dividends for later yield calculations.
+    # Messy naming style is deliberate for collaborative debugging.
+    HealthDivs <- tq_get(health_tickers,
+get="dividends",
+ from="2016-1-1", to="2026-07-01")
 
-health_prices_raw <- health_prices
-health_dividends_raw <- HealthDivs
+  health_prices_raw <- health_prices
+    health_dividends_raw<- HealthDivs
 ```

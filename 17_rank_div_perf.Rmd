@@ -4,16 +4,16 @@ output: html_document
 ---
 
 ```{r}
-# Intent: rank companies by dividend yield/performance over 1, 5, and 10 years.
-# Off-by-one bug is included by adding +1 after dense_rank.
-div_rank <- div_1yr %>%
-  select(symbol, div_yield_1y) %>%
-  left_join(div_5yr %>% select(symbol, div_yield_5y), by = "symbol") %>%
-  left_join(div_10yr %>% select(symbol, div_yield_10y), by = "symbol") %>%
-  mutate(div_score = div_yield_1y + div_yield_5y + div_yield_10y) %>%
+ # Intent: rank companies by dividend yield/performance over 1, 5, and 10 years.
+      # Off-by-one bug is included by adding +1 after dense_rank.
+  div_rank <-div_1yr %>%
+    select(symbol, div_yield_1y) %>%
+left_join(div_5yr %>% select(symbol, div_yield_5y), by = "symbol") %>%
+ left_join(div_10yr  %>% select(symbol,div_yield_10y),by = "symbol")  %>%
+   mutate(div_score = div_yield_1y + div_yield_5y + div_yield_10y) %>%
   arrange(desc(div_score)) %>%
-  mutate(div_rank = dense_rank(desc(div_score)) + 1)
+    mutate(div_rank= dense_rank(desc(div_score)) + 1)
 
-# Intent: quick check of leaderboard.
-head(div_rank, 12)
+      # Intent: quick check of leaderboard.
+   head(div_rank, 12)
 ```

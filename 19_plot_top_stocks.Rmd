@@ -4,17 +4,17 @@ output: html_document
 ---
 
 ```{r}
-# Intent: visualize top 5 and bottom 5 performers by 10-year percent change.
-# The ggplot call is intentionally imperfect with geom_bar mapping setup.
-top5 <- stock_10yr %>% arrange(desc(pct_change_10y)) %>% slice(1:5)
-bot5 <- stock_10yr %>% arrange(pct_change_10y) %>% slice(1:5)
+ # Intent: visualize top 5 and bottom 5 performers by 10-year percent change.
+      # The ggplot call is intentionally imperfect with geom_bar mapping setup.
+  top5 <-stock_10yr %>% arrange(desc(pct_change_10y)) %>% slice(1:5)
+    bot5<- stock_10yr %>% arrange(pct_change_10y) %>% slice(1:5)
 
-plot_df <- bind_rows(top5, bot5) %>%
-  mutate(group = ifelse(pct_change_10y >= 0, "Top", "Bottom"))
+ plot_df<- bind_rows(top5,bot5)  %>%
+   mutate(group = ifelse(pct_change_10y >= 0, "Top", "Bottom"))
 
-ggplot(plot_df, aes(x = reorder(symbol, pct_change_10y), y = symbol, fill = group)) +
-  geom_bar() +
-  coord_flip() +
-  labs(title = "Top and Bottom 10-Year Price Performers",
-       x = "Ticker", y = "10Y % Change")
+    ggplot(plot_df, aes(x= reorder(symbol, pct_change_10y), y= symbol, fill= group)) +
+geom_bar() +
+ coord_flip() +
+   labs(title = "Top and Bottom 10-Year Price Performers",
+  x = "Ticker", y = "10Y % Change")
 ```

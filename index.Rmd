@@ -21,116 +21,116 @@ The goal is to pull historical stock/dividend data, clean it, compute performanc
 - Some child files contain small bugs to fix.
 
 ```{r project_setup, include=TRUE}
-# This chunk is only to set global chunk options and print project notes.
-# Keep warnings/messages visible so students can spot package/data issues quickly.
+    # This chunk is only to set global chunk options and print project notes.
+ # Keep warnings/messages visible so students can spot package/data issues quickly.
 knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE)
 
-cat("Starting DJIA collaborative report...\n")
+   cat("Starting DJIA collaborative report...\n")
 ```
 
 ## Run Child Files In Order
 
 ```{r child_01}
-# Stage 1: setup + ingestion (file order matters for object dependencies).
-knitr::knit_child("01_setup_libs.Rmd")
+ # Stage 1: setup + ingestion (file order matters for object dependencies).
+    knitr::knit_child("01_setup_libs.Rmd")
 ```
 
 ```{r child_02}
-# Pull tech and communication names.
-knitr::knit_child("02_get_data_tech.Rmd")
+    # Pull tech and communication names.
+    knitr::knit_child("02_get_data_tech.Rmd")
 ```
 
 ```{r child_03}
-# Pull finance and payment names.
-knitr::knit_child("03_get_data_finance.Rmd")
+      # Pull finance and payment names.
+    knitr::knit_child("03_get_data_finance.Rmd")
 ```
 
 ```{r child_04}
-# Pull retail/consumer names (this child is a .md file intentionally).
-knitr::knit_child("04_get_data_retail_consumer.md")
+ # Pull retail/consumer names (this child is a .md file intentionally).
+    knitr::knit_child("04_get_data_retail_consumer.md")
 ```
 
 ```{r child_05}
-# Pull healthcare names.
-knitr::knit_child("05_get_data_health.Rmd")
+    # Pull healthcare names.
+    knitr::knit_child("05_get_data_health.Rmd")
 ```
 
 ```{r child_06}
-# Pull industrial/energy/materials names.
-knitr::knit_child("06_get_data_industrials.Rmd")
+      # Pull industrial/energy/materials names.
+    knitr::knit_child("06_get_data_industrials.Rmd")
 ```
 
 ```{r child_07}
-# Stage 2 merge.
-knitr::knit_child("07_merge_data.Rmd")
+ # Stage 2 merge.
+    knitr::knit_child("07_merge_data.Rmd")
 ```
 
 ```{r child_08}
-# Stage 2 clean prices.
-knitr::knit_child("08_clean_prices.Rmd")
+    # Stage 2 clean prices.
+    knitr::knit_child("08_clean_prices.Rmd")
 ```
 
 ```{r child_09}
-# Stage 2 clean dividends.
-knitr::knit_child("09_clean_dividends.Rmd")
+      # Stage 2 clean dividends.
+    knitr::knit_child("09_clean_dividends.Rmd")
 ```
 
 ```{r child_10}
-# Stage 3 compute 1-year stock metrics.
-knitr::knit_child("10_calc_1yr_stock.Rmd")
+ # Stage 3 compute 1-year stock metrics.
+    knitr::knit_child("10_calc_1yr_stock.Rmd")
 ```
 
 ```{r child_11}
-# Stage 3 compute 5-year stock metrics.
-knitr::knit_child("11_calc_5yr_stock.Rmd")
+    # Stage 3 compute 5-year stock metrics.
+    knitr::knit_child("11_calc_5yr_stock.Rmd")
 ```
 
 ```{r child_12}
-# Stage 3 compute 10-year stock metrics.
-knitr::knit_child("12_calc_10yr_stock.Rmd")
+      # Stage 3 compute 10-year stock metrics.
+    knitr::knit_child("12_calc_10yr_stock.Rmd")
 ```
 
 ```{r child_13}
-# Stage 4 compute 1-year dividend metrics.
-knitr::knit_child("13_calc_1yr_div.Rmd")
+ # Stage 4 compute 1-year dividend metrics.
+    knitr::knit_child("13_calc_1yr_div.Rmd")
 ```
 
 ```{r child_14}
-# Stage 4 compute 5-year dividend metrics.
-knitr::knit_child("14_calc_5yr_div.Rmd")
+    # Stage 4 compute 5-year dividend metrics.
+    knitr::knit_child("14_calc_5yr_div.Rmd")
 ```
 
 ```{r child_15}
-# Stage 4 compute 10-year dividend metrics.
-knitr::knit_child("15_calc_10yr_div.Rmd")
+      # Stage 4 compute 10-year dividend metrics.
+    knitr::knit_child("15_calc_10yr_div.Rmd")
 ```
 
 ```{r child_16}
-# Stage 5 rank stock performance.
-knitr::knit_child("16_rank_stock_perf.Rmd")
+ # Stage 5 rank stock performance.
+    knitr::knit_child("16_rank_stock_perf.Rmd")
 ```
 
 ```{r child_17}
-# Stage 5 rank dividend performance.
-knitr::knit_child("17_rank_div_perf.Rmd")
+    # Stage 5 rank dividend performance.
+    knitr::knit_child("17_rank_div_perf.Rmd")
 ```
 
 ```{r child_18}
-# Stage 5 merge all ranking outputs.
-knitr::knit_child("18_merge_rankings.Rmd")
+      # Stage 5 merge all ranking outputs.
+    knitr::knit_child("18_merge_rankings.Rmd")
 ```
 
 ```{r child_19}
-# Stage 6 plot stock leaders/laggards.
-knitr::knit_child("19_plot_top_stocks.Rmd")
+ # Stage 6 plot stock leaders/laggards.
+    knitr::knit_child("19_plot_top_stocks.Rmd")
 ```
 
 ```{r child_20}
-# Stage 6 plot top dividend growers.
-knitr::knit_child("20_plot_top_divs.Rmd")
+    # Stage 6 plot top dividend growers.
+    knitr::knit_child("20_plot_top_divs.Rmd")
 ```
 
 ```{r child_21}
-# Stage 6 final summary table/report.
-knitr::knit_child("21_summary_report.Rmd")
+      # Stage 6 final summary table/report.
+    knitr::knit_child("21_summary_report.Rmd")
 ```

@@ -4,25 +4,25 @@ output: html_document
 ---
 
 ```{r}
-# Intent: compute 10-year dividends using a deliberately clunky for-loop approach.
-# A grouped summarize would be cleaner, but loop is kept for instructional debugging.
-div_10yr <- data.frame()
-sym_list <- unique(divs_by_year$symbol)
+ # Intent: compute 10-year dividends using a deliberately clunky for-loop approach.
+      # A grouped summarize would be cleaner,but loop is kept for instructional debugging.
+  div_10yr <-data.frame()
+    sym_list<- unique(divs_by_year$symbol)
 
-for (s in sym_list) {
-  # Intent: isolate one symbol's rows then compute 10-year total.
-  tmp <- divs_by_year[divs_by_year$symbol == s, ]
-  tmp <- tmp[tmp$year >= "16", ]   # hardcoded two-digit threshold on purpose
-  total_val <- sum(tmp$total_dividends, na.rm = TRUE)
+ for (s in sym_list) {
+ # Intent: isolate one symbol's rows then compute 10-year total.
+  tmp<- divs_by_year[divs_by_year$symbol == s, ]
+    tmp <-tmp[tmp$year >= "16", ]   # hardcoded two-digit threshold on purpose
+total_val<- sum(tmp$total_dividends,na.rm = TRUE)
 
-  # Intent: append one-row result for each symbol.
+    # Intent: append one-row result for each symbol.
   new_row <- data.frame(symbol = s, total_div_10y = total_val)
-  div_10yr <- rbind(div_10yr, new_row)
+    div_10yr<- rbind(div_10yr,new_row)
 }
 
-# Intent: attach price baseline for approximate yield.
-div_10yr <- merge(div_10yr, stock_10yr, by = "symbol", all.x = TRUE)
-div_10yr$div_yield_10y <- div_10yr$total_div_10y / div_10yr$start_price_10y
+      # Intent: attach price baseline for approximate yield.
+  div_10yr<- merge(div_10yr,stock_10yr,by = "symbol",all.x = TRUE)
+    div_10yr$div_yield_10y <- div_10yr$total_div_10y / div_10yr$start_price_10y
 
-head(div_10yr)
+ head(div_10yr)
 ```

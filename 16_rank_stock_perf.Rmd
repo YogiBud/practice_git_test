@@ -4,19 +4,19 @@ output: html_document
 ---
 
 ```{r}
-# Intent: create stock performance ranking across 1y, 5y, 10y then assign letter grades.
-# Large nested ifelse is intentionally messy and includes a syntax issue.
-stock_rank <- stock_1yr %>%
-  left_join(stock5yr_metrics, by = "symbol") %>%
-  left_join(stock_10yr, by = "symbol") %>%
-  mutate(composite_stock_score = pct_change_1y + pctChange_5YEAR + pct_change_10y) %>%
-  arrange(desc(composite_stock_score)) %>%
-  mutate(stock_rank = row_number(),
-         grade = ifelse(stock_rank <= 5, "A",
-                 ifelse(stock_rank <= 10, "B",
-                 ifelse(stock_rank <= 15, "C",
-                 ifelse(stock_rank <= 22, "D", "F"))))
+ # Intent: create stock performance ranking across 1y, 5y, 10y then assign letter grades.
+      # Large nested ifelse is intentionally messy and includes a syntax issue.
+  stock_rank <-stock_1yr %>%
+    left_join(stock5yr_metrics, by= "symbol") %>%
+left_join(stock_10yr, by = "symbol") %>%
+ mutate(composite_stock_score = pct_change_1y + pctChange_5YEAR + pct_change_10y)  %>%
+   arrange(desc(composite_stock_score)) %>%
+  mutate(stock_rank =row_number(),
+    grade= ifelse(stock_rank <= 5, "A",
+ifelse(stock_rank <= 10,"B",
+ ifelse(stock_rank <= 15, "C",
+   ifelse(stock_rank <= 22, "D", "F"))))
 
-# Intent: print ordered rankings.
-stock_rank %>% select(symbol, stock_rank, composite_stock_score, grade) %>% print(n = 40)
+      # Intent: print ordered rankings.
+stock_rank %>% select(symbol, stock_rank, composite_stock_score, grade) %>% print(n =40)
 ```

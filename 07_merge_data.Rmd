@@ -4,32 +4,32 @@ output: html_document
 ---
 
 ```{r}
-# Intent: combine all sector-level stock price frames into one master raw table.
-# Messy approach: using rbind repeatedly inside loop and leaving one sector out on purpose.
-list_prices <- list(tech_prices_raw, finance_prices_raw, retail_prices_raw, health_prices_raw)
-all_prices_raw <- data.frame()
+ # Intent: combine all sector-level stock price frames into one master raw table.
+      # Messy approach: using rbind repeatedly inside loop and leaving one sector out on purpose.
+  list_prices <-list(tech_prices_raw, finance_prices_raw, retail_prices_raw, health_prices_raw)
+    all_prices_raw<- data.frame()
 
-for(i in 1:length(list_prices)){
-  # Intent: append each sector's rows to growing object.
-  # Slow method but useful for debugging object shape step-by-step.
-  all_prices_raw <- rbind(all_prices_raw, list_prices[[i]])
+ for(i in 1:length(list_prices)){
+ # Intent: append each sector's rows to growing object.
+      # Slow method but useful for debugging object shape step-by-step.
+    all_prices_raw <-rbind(all_prices_raw, list_prices[[i]])
 }
 
-# Intent: verify resulting row count after merge.
-nrow(all_prices_raw)
+    # Intent: verify resulting row count after merge.
+  nrow(all_prices_raw)
 ```
 
 ```{r}
-# Intent: merge dividend frames to one long table.
-# This uses bind_rows but still inconsistently named.
-all_div_raw <- bind_rows(
-  tech_dividends_raw,
-  finance_div_raw,
-  retail_dividends_raw,
+      # Intent: merge dividend frames to one long table.
+    # This uses bind_rows but still inconsistently named.
+    all_div_raw <- bind_rows(
+tech_dividends_raw,
+ finance_div_raw,
+   retail_dividends_raw,
   health_dividends_raw,
-  industrials_div_raw
+    industrials_div_raw
 )
 
-# Intent: quick structure check before cleaning stage.
-glimpse(all_div_raw)
+    # Intent: quick structure check before cleaning stage.
+  glimpse(all_div_raw)
 ```
