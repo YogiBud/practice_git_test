@@ -11,10 +11,11 @@ The workflow in .github/workflows/workshop_leaderboard.yml recalculates points f
 
 It runs when:
 
-- a pull request is opened, updated, reopened, or closed
-- a pull request review is submitted
+- code is pushed to the `main` branch
 - the workflow is triggered manually
 - every 30 minutes on a schedule
+
+The repo only writes leaderboard files from `main`, so student PR branches do not get bot commits for leaderboard updates.
 
 ## Current Scoring Rules
 

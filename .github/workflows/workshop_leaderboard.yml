@@ -1,10 +1,8 @@
 name: Workshop Leaderboard
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize, closed]
-  pull_request_review:
-    types: [submitted]
+  push:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "*/30 * * * *"
@@ -21,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          fetch-depth: 0
 
       - name: Compute leaderboard
         uses: actions/github-script@v8
@@ -186,9 +184,9 @@ jobs:
             fs.writeFileSync("docs/leaderboard_data.json", JSON.stringify(table, null, 2) + "\n");
 
       - name: Commit leaderboard updates
-        if: ${{ github.event.action != 'closed' && (!github.event.pull_request || github.event.pull_request.head.repo.full_name == github.repository) }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         env:
-          BRANCH_NAME: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          BRANCH_NAME: main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
